@@ -1,0 +1,34 @@
+<p-table #dt [columns]="cols" [value]="data" [paginator]="true" [rows]="10">
+    <ng-template pTemplate="header" let-columns>
+        <tr>
+            <th *ngFor="let col of columns">
+                {{col.header}}
+            </th>
+            <th></th>
+        </tr>
+        <tr>
+            <th *ngFor="let col of columns" [ngSwitch]="col.field">
+                <input *ngSwitchCase="'userId'" pInputText type="text"
+                    (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+                <input *ngSwitchCase="'id'" pInputText type="text"
+                    (input)="dt.filter($event.target.value, col.field, 'equals')">
+                <input *ngSwitchCase="'title'" pInputText type="text"
+                    (input)="dt.filter($event.target.value, col.field, col.filterMatchMode)">
+            </th>
+            <th></th>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+        <tr>
+            <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+            </td>
+            <td>
+                <button pButton type="button" label="Edit" (click)="editData(rowData)"></button>
+            </td>
+        </tr>
+    </ng-template>
+</p-table>
+
+<div *ngIf="showModal">
+    <app-child [dataToSend]="sendingData" (emitter)="childEmitter()"></app-child>
+</div>

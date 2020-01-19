@@ -1,0 +1,28 @@
+<p-dialog [(visible)]="showModal" [modal]="true" [closable]="false">
+  <p-header>
+    Edit Data
+  </p-header>
+  <form [formGroup]="userform">
+    <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid" style="margin: 10px 0px">
+      <div class="ui-grid-row">
+        <div class="ui-grid-col">
+          UserId:
+        </div>
+        <div class="ui-grid-col">
+          <input pInputText type="text" formControlName="userId" placeholder="Required" />
+        </div>
+      </div>
+      <div class="ui-grid-row">
+        <div class="ui-grid-col">
+          Title:
+        </div>
+        <div class="ui-grid-col">
+          <input pInputText type="text" formControlName="title" placeholder="Required" />
+        </div>
+      </div>
+    </div>
+  </form>
+  <p-footer>
+    <button pButton type="button" label="Back" (click)="closeModal()"></button>
+  </p-footer>
+</p-dialog>
